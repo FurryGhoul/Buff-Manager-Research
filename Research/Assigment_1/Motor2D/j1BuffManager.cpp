@@ -46,6 +46,11 @@ bool j1BuffManager::Update(float dt)
 		pressed_3 = false;
 		decrease_buff_timed(DEF, 10);
 	}
+
+	if (App->input->GetKey(SDL_SCANCODE_4) == KEY_DOWN)
+	{
+
+	}
 	return true;
 }
 
@@ -131,46 +136,7 @@ void j1BuffManager::decrease_buff_timed(Stats stat, float bonus)
 	}
 }
 
+void j1BuffManager::stackable_buff(Stats stat, float bonus)
+{
 
-//void j1BuffManager::increase_buff_timed(Stats stat, float bonus)
-//{
-//	clock.Start();
-//
-//	switch (stat)
-//	{
-//	case VIT:
-//		App->attributes->vit += bonus;
-//		break;
-//	case DEF:
-//		App->attributes->def += bonus;
-//		break;
-//	case DEX:
-//		App->attributes->dex += bonus;
-//		if (clock.ReadSec() >= 10)
-//		{
-//			App->attributes->dex -= bonus;
-//		}
-//		break;
-//	case STR:
-//		App->attributes->str += bonus;
-//		if (clock.ReadSec() >= 10)
-//		{
-//			App->attributes->str -= bonus;
-//		}
-//		break;
-//	case INTL:
-//		App->attributes->intl += bonus;
-//		if (clock.ReadSec() >= 10)
-//		{
-//			App->attributes->intl -= bonus;
-//		}
-//		break;
-//	case STA:
-//		App->attributes->sta += bonus;
-//		if (clock.ReadSec() >= 10)
-//		{
-//			App->attributes->sta -= bonus;
-//		}
-//		break;
-//	}
-//}
+}
