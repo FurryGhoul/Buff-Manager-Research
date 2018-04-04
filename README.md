@@ -154,6 +154,6 @@ if (App->input->GetKey(SDL_SCANCODE_3) == KEY_DOWN && pressed_3 == false)
 
 # Code Links
 
-[Repository with code](https://github.com/FurryGhoul/Buff-Manager-Research)
+[Repository with Code and Exercise](https://github.com/FurryGhoul/Buff-Manager-Research)
 
 [Executable Demo](https://github.com/FurryGhoul/Buff-Manager-Research/releases)
