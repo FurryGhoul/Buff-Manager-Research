@@ -152,4 +152,8 @@ if (App->input->GetKey(SDL_SCANCODE_3) == KEY_DOWN && pressed_3 == false)
 
 [RPG Attribute System](https://gamedevelopment.tutsplus.com/tutorials/using-the-composite-design-pattern-for-an-rpg-attributes-system--gamedev-243)
 
+# Code Links
 
+[Repository with code](https://github.com/FurryGhoul/Buff-Manager-Research)
+
+[Executable Demo](https://github.com/FurryGhoul/Buff-Manager-Research/releases)
