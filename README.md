@@ -145,3 +145,9 @@ if (App->input->GetKey(SDL_SCANCODE_3) == KEY_DOWN && pressed_3 == false)
 # Info Links
 
 [Time Related State Effects](https://www.gamedev.net/forums/topic/622135-time-related-state-effects-buffsdebuffs-what-are-manageable-code-designs/)
+
+[Flexible Buff/Debuff System](https://gamedev.stackexchange.com/questions/29982/whats-a-way-to-implement-a-flexible-buff-debuff-system)
+
+[RPG Attribute System](https://gamedevelopment.tutsplus.com/tutorials/using-the-composite-design-pattern-for-an-rpg-attributes-system--gamedev-243)
+
+
