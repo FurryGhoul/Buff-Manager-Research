@@ -8,6 +8,10 @@ In this case of a buff, this is the status effect which results in a positive ch
 
 The effect of each buff will dependent on where it came from. As mentioned before buffs have to have a source to their effects and have a certain sense for the player to understand. So buffs will modify stats depending on this, food will usually give you health or stamina, potion will raise certain attributes momentarily, certain location maybe boost your speed...
 
+<p align="center"> 
+<img src="https://i.imgur.com/w03iHKC.jpg" width="600">
+</p>
+
 ## Why are buffs important?
 
 More than asking ourselves what’s the importance of buffs, it is better to explain the overall importance on status effects which include both buffs and debuffs. 
@@ -17,6 +21,10 @@ Another factor to take into account is the sensation we can transmit by using th
 
 The problem with using buffs and debuffs is that it can cause the wrong sensation and there wouldn’t be any type of difference between them and stats gained by equipment. 
 
+<p align="center"> 
+<img src="https://i.imgur.com/y2jRsx2.jpg" width="600">
+</p>
+
 ## Types of buffs
 
 While all buff are essentially the same thing, as they all change stats (some more than others), they do come in different forms. They can be categorized in those categories and subcategories: single target, group target, single stat, multi-stat , percentage, permanent and timed.
@@ -24,6 +32,10 @@ While all buff are essentially the same thing, as they all change stats (some mo
 ### Single/Multi Target
 
 First of all, when applying status effect there has to be taken in mind whether it is going for one single player or a group of them. Many buffs can work as both, the can be applied for one target but depending on the position of the other characters, it can apply to them as well. For example: healing circle, normally for groups but it can be applied to one character as well. 
+
+<p align="center"> 
+<img src="https://i.imgur.com/uEORDx9.jpg" width="500">
+</p>
 
 ### Single/Multi Stat
 
@@ -37,6 +49,10 @@ Stats change can be calculated through the addition or subtraction of a certain 
 
 Status change can either be temporal or permanent. Some buff are meant to last forever or until certain event occurs (stats increased with location bonuses), while other have certain duration (magic aura grant by a spell or potion). 
 
+<p align="center"> 
+<img src="https://i.imgur.com/xgrLaKg.jpg" width="500">
+</p>
+
 ### Stackable
 
 A more recent type of buff would be the stackable meaning that, the buff apllied can be re applied until it reaches the limit programmed. Each of this stacks will modify more and more the player’s stats, as these stacks increase. 
@@ -46,6 +62,20 @@ A more recent type of buff would be the stackable meaning that, the buff apllied
 In order to apply a buff manger to our code there has to be some attributes related to the character or entities to play around with which will give a sense to the system. In order to do so we can create a base class for attributes where we will load each value from a XML and create simple function to get them.
 
 This class will store the initial stats and is from where we will access to all the values and attributes to implemented in the different modules where they are needed, such as the player or buff manager module. The attributes will already be loaded with an initial value which will increase or decrease depending on the buff implanted. The change of these values will be done through bonuses applied in the buff manger module.
+
+```markdown
+bool j1Attributes::Awake(pugi::xml_node& config)
+{
+	vit = config.child("vitality").attribute("value").as_float(35);
+	sta = config.child("stamina").attribute("value").as_float(25);
+	def = config.child("defense").attribute("value").as_float(30);
+	dex = config.child("dexterity").attribute("value").as_float(25);
+	str = config.child("strength").attribute("value").as_float(25);
+	intl = config.child("intelligence").attribute("value").as_float(15);
+
+	return true;
+}
+```
 
 ## Buff Manager Module
 
@@ -61,45 +91,39 @@ The numerical function receives a stat to modify and the amount by which the ori
 
 The percentage function works with the same input arguments as the numerical one and the same switch system. The difference with the other one is that this function does the operation by multiplying the original value by the decimal percentage (%/100) and adding in to the original value to obtain the buffed stat. 
 
+```markdown
+void j1BuffManager::increase_buff(Stats stat, float bonus)
+{
+	switch (stat)
+	{
+	case VIT:
+		App->attributes->vit += bonus;
+		break;
+	}
+}
+```
+
+```markdown
+void j1BuffManager::increase_buff_percentage(Stats stat, float bonus_percentage)
+{
+	if (bonus_percentage > MIN_PERCENTAGE && bonus_percentage < MAX_PERCENTAGE)
+	{
+		switch (stat)
+		{
+		case VIT:
+			App->attributes->vit += App->attributes->vit*(bonus_percentage / 100);
+			break;
+		}
+	}
+}
+```
+
 ### Timed Functions
 
 Both function from the previous segment work with the same system in the timed functions, same input argument and switch system. The only change in these functions is that the bonus that is going to be added has to ware off after a certain period of time. 
 
 In this case we need to add a clock or timer form the j1Timer module. The first thing to do is to initialize the clock, which will be on seconds. After having the clock start running there has to be a condition for each case in the switch, so when the buff reaches its limit of duration it goes off. This means that the conditions will subtract the bonus form the original stat regarding whether it is a numeric operation or a percentage one. 
 
+# Info Links
 
-You can use the [editor on GitHub](https://github.com/FurryGhoul/Buff-Manager-Research/edit/master/README.md) to maintain and preview the content for your website in Markdown files.
-
-Whenever you commit to this repository, GitHub Pages will run [Jekyll](https://jekyllrb.com/) to rebuild the pages in your site, from the content in your Markdown files.
-
-### Markdown
-
-Markdown is a lightweight and easy-to-use syntax for styling your writing. It includes conventions for
-
-```markdown
-Syntax highlighted code block
-
-# Header 1
-## Header 2
-### Header 3
-
-- Bulleted
-- List
-
-1. Numbered
-2. List
-
-**Bold** and _Italic_ and `Code` text
-
-[Link](url) and ![Image](src)
-```
-
-For more details see [GitHub Flavored Markdown](https://guides.github.com/features/mastering-markdown/).
-
-### Jekyll Themes
-
-Your Pages site will use the layout and styles from the Jekyll theme you have selected in your [repository settings](https://github.com/FurryGhoul/Buff-Manager-Research/settings). The name of this theme is saved in the Jekyll `_config.yml` configuration file.
-
-### Support or Contact
-
-Having trouble with Pages? Check out our [documentation](https://help.github.com/categories/github-pages-basics/) or [contact support](https://github.com/contact) and we’ll help you sort it out.
+[Time Related State Effects](https://www.gamedev.net/forums/topic/622135-time-related-state-effects-buffsdebuffs-what-are-manageable-code-designs/)
