@@ -126,6 +126,22 @@ Both function from the previous segment work with the same system in the timed f
 
 In this case we need to add a clock or timer form the j1Timer module. The first thing to do is to initialize the clock, which will be on seconds. After having the clock start running there has to be a condition for each case in the switch, so when the buff reaches its limit of duration it goes off. This means that the conditions will subtract the bonus form the original stat regarding whether it is a numeric operation or a percentage one. 
 
+```markdown
+if (App->input->GetKey(SDL_SCANCODE_3) == KEY_DOWN && pressed_3 == false)
+	{
+		pressed_3 = true;
+		increase_buff(VIT, 10);
+		clock.Reset();
+		clock.Start();
+	}
+
+	if (clock.ReadSec() >= 5 && pressed_3 == true)
+	{
+		pressed_3 = false;
+		decrease_buff_timed(VIT, 10);
+	}
+```
+
 # Info Links
 
 [Time Related State Effects](https://www.gamedev.net/forums/topic/622135-time-related-state-effects-buffsdebuffs-what-are-manageable-code-designs/)
