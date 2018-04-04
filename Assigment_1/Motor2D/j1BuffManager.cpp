@@ -17,6 +17,13 @@ j1BuffManager::~j1BuffManager()
 
 bool j1BuffManager::Start()	
 {
+	org_def = App->attributes->def;
+	org_dex = App->attributes->dex;
+	org_str = App->attributes->str;
+	org_sta = App->attributes->sta;
+	org_vit = App->attributes->vit;
+	org_intl = App->attributes->intl;
+
 	LOG("Loading Stats");
 	return true;
 }
@@ -36,20 +43,29 @@ bool j1BuffManager::Update(float dt)
 	if (App->input->GetKey(SDL_SCANCODE_3) == KEY_DOWN && pressed_3 == false)
 	{
 		pressed_3 = true;
-		increase_buff(DEF, 10);
+		increase_buff(VIT, 10);
 		clock.Reset();
 		clock.Start();
 	}
 
-	if (clock.ReadSec() >= 10 && pressed_3 == true)
+	if (clock.ReadSec() >= 5 && pressed_3 == true)
 	{
 		pressed_3 = false;
-		decrease_buff_timed(DEF, 10);
+		decrease_buff_timed(VIT, 10);
 	}
 
-	if (App->input->GetKey(SDL_SCANCODE_4) == KEY_DOWN)
+	if (App->input->GetKey(SDL_SCANCODE_4) == KEY_DOWN && pressed_4 == false)
 	{
+		pressed_4 = true;
+		increase_buff_percentage(VIT, 50);
+		clock2.Reset();
+		clock2.Start();
+	}
 
+	if (clock2.ReadSec() >= 5 && pressed_4 == true)
+	{
+		pressed_4 = false;
+		decrease_buff_timed_percentage(VIT, 50);
 	}
 	return true;
 }
@@ -136,7 +152,34 @@ void j1BuffManager::decrease_buff_timed(Stats stat, float bonus)
 	}
 }
 
-void j1BuffManager::stackable_buff(Stats stat, float bonus)
+void j1BuffManager::decrease_buff_timed_percentage(Stats stat, float bonus_percentage)
 {
-
+	if (bonus_percentage > MIN_PERCENTAGE && bonus_percentage < MAX_PERCENTAGE)
+	{
+		switch (stat)
+		{
+		case VIT:
+			App->attributes->vit -= org_vit*(bonus_percentage / 100);
+			break;
+		case DEF:
+			App->attributes->def -= org_def*(bonus_percentage / 100);
+			break;
+		case DEX:
+			App->attributes->dex -= org_dex*(bonus_percentage / 100);
+			break;
+		case STR:
+			App->attributes->str -= org_str*(bonus_percentage / 100);
+			break;
+		case INTL:
+			App->attributes->intl -= org_intl*(bonus_percentage / 100);
+			break;
+		case STA:
+			App->attributes->sta -= org_sta*(bonus_percentage / 100);
+			break;
+		}
+	}
+	else
+	{
+		LOG("Unvalid porcentage value");
+	}
 }

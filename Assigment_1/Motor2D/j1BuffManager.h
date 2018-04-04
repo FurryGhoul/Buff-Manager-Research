@@ -35,16 +35,25 @@ public:
 	void increase_buff(Stats stat, float bonus);
 	void increase_buff_percentage(Stats stat, float percentage_bonus);
 	void decrease_buff_timed(Stats stat, float bonus);
-	void stackable_buff(Stats stat, float bonus);
+	void decrease_buff_timed_percentage(Stats stat, float percentage_bonus);
 
 public:
 
 	bool pressed_3 = false;
+	bool pressed_4 = false;
+
+	float org_def = 0;
+	float org_dex = 0;
+	float org_str = 0;
+	float org_sta = 0;
+	float org_vit = 0;
+	float org_intl = 0;
 
 private:
 
 	Stats			stats_val;
 	j1Timer			clock;
+	j1Timer			clock2;
 
 };
 
