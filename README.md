@@ -57,7 +57,9 @@ Status change can either be temporal or permanent. Some buff are meant to last f
 
 ### Stackable
 
-A more recent type of buff would be the stackable meaning that, the buff apllied can be re applied until it reaches the limit programmed. Each of this stacks will modify more and more the player’s stats, as these stacks increase. 
+When talkin about stackable we can refer to a type of buff that ca be applied several times depending on how many uses it has or that in order to use this buff you need to achieve certain objective. Example: every 4 consecutive attacks gain a buff that increases the attack for 5 seconds.
+
+Another definition to stack will refer to how buffs interact with each other. When saying that buffs stack, it refers to that one can effect the other one and mantain ore obtain a much bigger buff.
 
 ## Attribute Class
 
@@ -150,4 +152,8 @@ if (App->input->GetKey(SDL_SCANCODE_3) == KEY_DOWN && pressed_3 == false)
 
 [RPG Attribute System](https://gamedevelopment.tutsplus.com/tutorials/using-the-composite-design-pattern-for-an-rpg-attributes-system--gamedev-243)
 
+# Code Links
 
+[Repository with code](https://github.com/FurryGhoul/Buff-Manager-Research)
+
+[Executable Demo](https://github.com/FurryGhoul/Buff-Manager-Research/releases)
