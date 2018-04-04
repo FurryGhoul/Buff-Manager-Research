@@ -1,3 +1,5 @@
+My name is [Ivan Drofiak Villarejo](https://github.com/FurryGhoul), I'm a student in the [Degree in Videogames at the UPC in the CITM](https://www.citm.upc.edu/ing/estudis/graus-videojocs/). This content is generated for the research of seocnd year's Project 2, under the supervision of lecturer [Ricardo Pillosu](https://es.linkedin.com/in/ricardpillosu).
+
 # Buff Manager
 
 ## What is a buff?
