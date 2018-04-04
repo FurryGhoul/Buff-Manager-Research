@@ -33,9 +33,18 @@ bool j1BuffManager::Update(float dt)
 		increase_buff_percentage(DEF, 50);
 	}
 
-	if (App->input->GetKey(SDL_SCANCODE_3) == KEY_DOWN)
+	if (App->input->GetKey(SDL_SCANCODE_3) == KEY_DOWN && pressed_3 == false)
 	{
-		increase_buff_timed(DEF, 10);
+		pressed_3 = true;
+		increase_buff(DEF, 10);
+		clock.Reset();
+		clock.Start();
+	}
+
+	if (clock.ReadSec() >= 10 && pressed_3 == true)
+	{
+		pressed_3 = false;
+		decrease_buff_timed(DEF, 10);
 	}
 	return true;
 }
@@ -97,55 +106,71 @@ void j1BuffManager::increase_buff_percentage(Stats stat, float bonus_percentage)
 	}
 }
 
-void j1BuffManager::increase_buff_timed(Stats stat, float bonus)
+void j1BuffManager::decrease_buff_timed(Stats stat, float bonus)
 {
-	j1Timer clock; 
-	clock.Start();
-	clock.ReadSec();
-
 	switch (stat)
 	{
 	case VIT:
-		App->attributes->vit += bonus;
-		if (clock.ReadSec() >= 10)
-		{
-			App->attributes->vit -= bonus;
-		}
+		App->attributes->vit -= bonus;
 		break;
 	case DEF:
-		App->attributes->def += bonus;
-		if (clock.ReadSec() >=1)
-		{
-			App->attributes->def -= bonus;
-		}
+		App->attributes->def -= bonus;
 		break;
 	case DEX:
-		App->attributes->dex += bonus;
-		if (clock.ReadSec() >= 10)
-		{
-			App->attributes->dex -= bonus;
-		}
+		App->attributes->dex -= bonus;
 		break;
 	case STR:
-		App->attributes->str += bonus;
-		if (clock.ReadSec() >= 10)
-		{
-			App->attributes->str -= bonus;
-		}
+		App->attributes->str -= bonus;
 		break;
 	case INTL:
-		App->attributes->intl += bonus;
-		if (clock.ReadSec() >= 10)
-		{
-			App->attributes->intl -= bonus;
-		}
+		App->attributes->intl -= bonus;
 		break;
 	case STA:
-		App->attributes->sta += bonus;
-		if (clock.ReadSec() >= 10)
-		{
-			App->attributes->sta -= bonus;
-		}
+		App->attributes->sta -= bonus;
 		break;
 	}
 }
+
+
+//void j1BuffManager::increase_buff_timed(Stats stat, float bonus)
+//{
+//	clock.Start();
+//
+//	switch (stat)
+//	{
+//	case VIT:
+//		App->attributes->vit += bonus;
+//		break;
+//	case DEF:
+//		App->attributes->def += bonus;
+//		break;
+//	case DEX:
+//		App->attributes->dex += bonus;
+//		if (clock.ReadSec() >= 10)
+//		{
+//			App->attributes->dex -= bonus;
+//		}
+//		break;
+//	case STR:
+//		App->attributes->str += bonus;
+//		if (clock.ReadSec() >= 10)
+//		{
+//			App->attributes->str -= bonus;
+//		}
+//		break;
+//	case INTL:
+//		App->attributes->intl += bonus;
+//		if (clock.ReadSec() >= 10)
+//		{
+//			App->attributes->intl -= bonus;
+//		}
+//		break;
+//	case STA:
+//		App->attributes->sta += bonus;
+//		if (clock.ReadSec() >= 10)
+//		{
+//			App->attributes->sta -= bonus;
+//		}
+//		break;
+//	}
+//}

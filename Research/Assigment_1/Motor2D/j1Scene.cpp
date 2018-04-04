@@ -45,7 +45,7 @@ bool j1Scene::Start()
 	win_height = App->win->screen_surface->h;
 	win_width = App->win->screen_surface->w;
 
-	App->colliders->AddCollider({ 0,1000,5000,20 }, COLLIDER_FLOOR);
+	App->colliders->AddCollider({ 0,800,5000,20 }, COLLIDER_FLOOR);
 	App->colliders->AddCollider({ 1500,0,20,1000 }, COLLIDER_WALL);
 
 	App->gui->AddElementText(0.010*App->win->screen_surface->w, 0.0075*App->win->screen_surface->h, TEXT, 2, 255, 255, 0, this, "Defense:", true, true);
@@ -90,42 +90,6 @@ bool j1Scene::Update(float dt)
 		}
 	}	
 
-
-	//if (App->entities->player->original_pos.x > win_width / 2 && App->entities->player->original_pos.x <= limit_x)
-	//{
-	//	App->render->camera.x = App->entities->player->win_width / 2 - App->entities->player->original_pos.x;
-	//}
-	//
-	//if (!App->win->fullscreen_window && App->entities->player->original_pos.y > win_height / 2 && win_position_y+win_height <map_height)
-	//{
-	//	if (App->entities->player->original_pos.y + win_height / 2 < map_height)
-	//	{
-	//		App->render->camera.y = -App->entities->player->original_pos.y + win_height / 2;
-	//	}
-	//}
-
-	//App->map->Draw();
-
-	/*sprintf_s(score_string,256,"%d",App->entities->player->score);
-	sprintf_s(coins, 256, "%d", App->entities->player->coins);
-	sprintf_s(lives, 256, "x0%d", App->entities->player->lives);
-	sprintf_s(time, 128, "%i", (int)timer.ReadSec());
-
-	if (App->entities->player->lives < 1 || timer.ReadSec()>=100)
-	{
-		App->gui->startgame = true;
-		App->GamePaused = true;
-		App->transit->Transition(this, App->menu);
-		App->entities->player->lives = 3;
-		App->entities->player->score = 0;
-		App->entities->player->coins=0;
-	}
-	
-	if (App->entities->player->coins == 20)
-	{
-		App->entities->player->lives++;
-		App->entities->player->coins = 0;
-	}*/
 	sprintf_s(def_string, 256, "%.2f", App->attributes->def);
 	sprintf_s(dex_string, 256, "%.2f", App->attributes->dex);
 	sprintf_s(vit_string, 256, "%.2f", App->attributes->vit);
